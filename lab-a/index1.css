@@ -1,33 +1,37 @@
+/* General body styling */
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f0f0f0;
+    background-color: #f8f9fa;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    align-items: center;
-    min-height: 100vh;
+    min-height: 100vh; /* Забезпечує, що сторінка займає мінімум всю висоту екрана */
 }
 
 /* Header */
 .header {
     text-align: center;
-    background-color: #333;
+    background-color: #282c34;
     color: white;
-    padding: 20px 0;
-    width: 400px;
+    padding: 20px;
+    width: 100%;
+    max-width: 100%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .header h1 {
-    margin: 0;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 2.5rem;
+    margin-bottom: 5px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
 }
 
 .header h2 {
-    margin: 10px 0;
-    font-family: 'Georgia', serif;
+    font-size: 1.5rem;
     font-style: italic;
+    font-weight: lighter;
 }
 
 /* Image */
@@ -35,114 +39,84 @@ body {
     margin-top: 20px;
     display: flex;
     justify-content: center;
-    gap: 20px;
 }
 
 .image {
-    width: 150px;
-    height: 150px;
+    width: 180px;
+    height: 180px;
     object-fit: cover;
     border-radius: 50%;
-    border: 8px solid #333;
+    border: 5px solid #282c34;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 /* Switcher Button */
 .switcher {
     margin-top: 20px;
+    margin-left: 15px;
+}
+
+.switcher button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.switcher button:hover {
+    background-color: #0056b3;
 }
 
 /* Main content */
 .content {
-    text-align: center;
     max-width: 800px;
+    padding: 20px;
 }
 
 .content h3 {
-    color: #333;
-    margin-top: 20px;
-    font-family: 'Verdana', sans-serif;
+    font-size: 1.8rem;
+    color: #007bff;
+    margin-bottom: 10px;
+    border-bottom: 2px solid #007bff;
+    display: inline-block;
 }
 
 .content p {
-    text-align: justify;
-    font-size: 16px;
-    margin: 10px 0;
-    line-height: 1.5;
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
 }
 
-.content ul {
-    list-style-type: square;
-    margin: 10px 0;
-    padding-left: 20px;
-    text-align: left;
+.container {
+    flex: 1; /* Це дозволяє контейнеру займати весь доступний простір між заголовком та футером */
 }
 
-.content ul li {
-    margin: 5px 0;
-}
-
-/* Table */
+/* Experience Table */
 .experience-table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
-    text-align: left;
 }
 
 .experience-table th, .experience-table td {
-    border: 1px solid #333;
+    border: 1px solid #ddd;
     padding: 10px;
+    text-align: left;
 }
 
 .experience-table th {
-    background-color: #333;
+    background-color: #007bff;
     color: white;
+    text-transform: uppercase;
 }
 
-/* Skills Table */
-.skills-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-    font-size: 16px;
-}
-
-.skills-table th,
-.skills-table td {
-    border: 1px solid #333;
-    padding: 10px;
-    text-align: center;
-}
-
-.skills-table th {
-    background-color: #4CAF50;
-    color: white;
-    font-weight: bold;
-}
-
-.skills-table td {
-    background-color: #f9f9f9;
-}
-
-/* Color Legends for Skills */
-.skills-table td:contains("🟩") {
-    background-color: #d4edda; /* Green background */
-}
-
-.skills-table td:contains("🟦") {
-    background-color: #d0e7ff; /* Blue background */
-}
-
-.skills-table td:contains("⬜") {
-    background-color: #f0f0f0; /* Gray background */
-}
-
-/* Form */
+/* Contact Form */
 .contact-form {
-    margin-top: 20px;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
     gap: 10px;
 }
 
@@ -152,42 +126,33 @@ body {
 
 .contact-form input, .contact-form textarea {
     width: 100%;
-    max-width: 400px;
     padding: 10px;
-    border: 1px solid #333;
+    border: 1px solid #ddd;
     border-radius: 5px;
 }
 
 .contact-form button {
-    padding: 10px 20px;
-    background-color: #333;
+    padding: 10px;
+    background-color: #28a745;
     color: white;
     border: none;
-    cursor: pointer;
     border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-left: 40px;
 }
 
 .contact-form button:hover {
-    background-color: #555;
-}
-
-/* Link */
-.duplicate-link {
-    color: #2196F3;
-    text-decoration: none;
-}
-
-.duplicate-link:hover {
-    text-decoration: underline;
+    background-color: #218838;
 }
 
 /* Footer */
 .footer {
     width: 100%;
-    background-color: #333;
+    background-color: #282c34;
     color: white;
-    padding: 10px;
     text-align: center;
-    position: fixed;
+    padding: 15px;
+    position: relative; /* Використовуємо відносне позиціонування */
     bottom: 0;
 }

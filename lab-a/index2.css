@@ -1,7 +1,157 @@
-/* Rectangle Image */
+/* General body styling */
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+}
+
+/* Header styling */
+header.header {
+    background-color: #5549c4;
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+    border-bottom: 4px solid #61dafb;
+}
+
+header h1, header h2 {
+    margin: 0;
+    padding: 5px;
+}
+
+h1 {
+    font-size: 2.5rem;
+    letter-spacing: 2px;
+}
+
+h2 {
+    font-size: 1.5rem;
+    font-weight: lighter;
+}
+
+/* Switcher Button */
+.switcher {
+    margin-top: 20px;
+    margin-left: 15px;
+}
+
+.switcher button {
+    padding: 10px 40px;
+    background-color: #3924d4;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+.switcher button:hover {
+    background-color: #221969;
+}
+
+/* Container and layout styling */
+.container {
+    margin: 20px auto;
+    padding: 20px;
+    width: 80%;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Image container with square border */
+.image-container {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
 .image {
-    width: 160px;
-    height: 160px;
+    width: 250px;
+    height: 250px; /* Ensure the image is square */
     object-fit: cover;
-    border: 5px solid #333;
+    border: 5px solid #61dafb; /* Square border */
+    border-radius: 15px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Main content styling */
+main.content {
+    text-align: left;
+}
+
+main h3 {
+    font-size: 1.75rem;
+    color: #282c34;
+    border-bottom: 2px solid #61dafb;
+    padding-bottom: 10px;
+    margin-top: 20px;
+}
+
+main p {
+    font-size: 1rem;
+    color: #555;
+    margin: 10px 0;
+}
+
+/* Table styling */
+.experience-table, .skills-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+.experience-table th, .skills-table th, .experience-table td, .skills-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+}
+
+.experience-table th, .skills-table th {
+    background-color: #61dafb;
+    color: white;
+}
+
+.experience-table tr:nth-child(even), .skills-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+/* Form styling */
+.contact-form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.contact-form input, .contact-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.contact-form button {
+    background-color: #61dafb;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.contact-form button:hover {
+    background-color: #282c34;
+}
+
+/* Footer styling */
+footer.footer {
+    text-align: center;
+    background-color: #5549c4;
+    color: white;
+    padding: 10px 0;
+    margin-top: 20px;
 }
