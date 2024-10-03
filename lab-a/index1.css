@@ -43,7 +43,7 @@ body {
 /* Image */
 .image-container {
     margin-top: 20px;
-    margin-left: 20px;
+    margin-left: 90px;
     display: flex;
     justify-content: left;
 }
@@ -60,7 +60,7 @@ body {
 /* Switcher Button */
 .switcher {
     margin-top: 20px;
-    margin-left: 15px;
+    margin-left: 90px;
 }
 
 .switcher button {
@@ -198,6 +198,14 @@ body {
     .experience-table, .skills-table {
         font-size: 1rem;
     }
+
+    .image-container {
+        margin-left: 200px; /* Increased margin for larger screens */
+    }
+
+    .switcher {
+        margin-left: 200px;
+    }
 }
 
 /* Responsive styles for mobile screens (375px) */
@@ -227,6 +235,15 @@ body {
         font-size: 0.8rem;
     }
 
+    .image-container {
+        margin-left: 10px; /* Reduce margin for smaller screens */
+        margin-top: 10px; /* Reduce top margin */
+    }
+
+    .switcher {
+        margin-left: 10px; /* Reduce margin for smaller screens */
+    }
+    
     .contact-form input, .contact-form textarea {
         padding: 8px;
     }
