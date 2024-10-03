@@ -1,44 +1,51 @@
 /* General body styling */
 body {
-    font-family: 'Arial', sans-serif;
+    font-family: 'Poppins', sans-serif; /* М'який сучасний шрифт */
     margin: 0;
     padding: 0;
-    background-color: #f8f9fa;
+    background-color: #f7e7c1; /* Пісочний відтінок для загального фону */
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    min-height: 100vh; /* Забезпечує, що сторінка займає мінімум всю висоту екрана */
+    min-height: 100vh; 
+
+    /* Background Image */
+    background-image: url('paper.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 /* Header */
 .header {
     text-align: center;
-    background-color: #282c34;
+    background-color: #b99a72; /* Пісочний відтінок */
     color: white;
     padding: 20px;
-    width: 100%;
-    max-width: 100%;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 100%; /* Ensure the header takes full width */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Чітка тінь */
+    box-sizing: border-box; /* Include padding in the width */
 }
 
 .header h1 {
     font-size: 2.5rem;
     margin-bottom: 5px;
-    letter-spacing: 2px;
+    letter-spacing: 1.5px;
     text-transform: uppercase;
 }
 
 .header h2 {
     font-size: 1.5rem;
     font-style: italic;
-    font-weight: lighter;
+    font-weight: 300;
 }
 
 /* Image */
 .image-container {
     margin-top: 20px;
+    margin-left: 20px;
     display: flex;
-    justify-content: center;
+    justify-content: left;
 }
 
 .image {
@@ -46,8 +53,8 @@ body {
     height: 180px;
     object-fit: cover;
     border-radius: 50%;
-    border: 5px solid #282c34;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    border: 5px solid #b99a72; /* Пісочна рамка */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 /* Switcher Button */
@@ -58,7 +65,7 @@ body {
 
 .switcher button {
     padding: 10px 20px;
-    background-color: #007bff;
+    background-color: #f4b860; /* Теплий помаранчевий колір */
     color: white;
     border: none;
     border-radius: 50px;
@@ -67,20 +74,22 @@ body {
 }
 
 .switcher button:hover {
-    background-color: #0056b3;
+    background-color: #e89a45;
 }
 
 /* Main content */
 .content {
     max-width: 800px;
     padding: 20px;
+    box-sizing: border-box; /* Make sure padding is included in width calculations */
+    margin: 0 auto; /* Center the content */
 }
 
 .content h3 {
     font-size: 1.8rem;
-    color: #007bff;
+    color: #d59a6d; /* М'який пісочний колір */
     margin-bottom: 10px;
-    border-bottom: 2px solid #007bff;
+    border-bottom: 2px solid #d59a6d;
     display: inline-block;
 }
 
@@ -91,26 +100,37 @@ body {
 }
 
 .container {
-    flex: 1; /* Це дозволяє контейнеру займати весь доступний простір між заголовком та футером */
+    flex: 1;
+    width: 100%; /* Ensure the container takes full width */
+    box-sizing: border-box;
 }
 
 /* Experience Table */
-.experience-table {
-    width: 100%;
+.experience-table, .skills-table {
+    width: 100%; /* Make tables full width */
     border-collapse: collapse;
     margin-top: 20px;
 }
 
-.experience-table th, .experience-table td {
+.experience-table th, .skills-table th, .experience-table td, .skills-table td {
     border: 1px solid #ddd;
     padding: 10px;
     text-align: left;
 }
 
 .experience-table th {
-    background-color: #007bff;
+    background-color: #d59a6d;
     color: white;
     text-transform: uppercase;
+}
+
+/* Make tables responsive for smaller screens */
+@media (max-width: 600px) {
+    .skills-table, .experience-table {
+        display: block;
+        overflow-x: auto; /* Adds horizontal scroll on small screens */
+        white-space: nowrap; /* Prevents table cells from wrapping */
+    }
 }
 
 /* Contact Form */
@@ -129,11 +149,12 @@ body {
     padding: 10px;
     border: 1px solid #ddd;
     border-radius: 5px;
+    box-sizing: border-box; /* Include padding in width calculation */
 }
 
 .contact-form button {
     padding: 10px;
-    background-color: #28a745;
+    background-color: #f4b860;
     color: white;
     border: none;
     border-radius: 5px;
@@ -143,16 +164,75 @@ body {
 }
 
 .contact-form button:hover {
-    background-color: #218838;
+    background-color: #e89a45;
 }
 
 /* Footer */
 .footer {
-    width: 100%;
-    background-color: #282c34;
+    width: 100%; /* Ensure the footer takes full width */
+    background-color: #b99a72;
     color: white;
     text-align: center;
     padding: 15px;
-    position: relative; /* Використовуємо відносне позиціонування */
+    position: relative;
     bottom: 0;
+    box-sizing: border-box; /* Include padding in the width calculation */
+}
+
+/* Style 1: Default styles for larger screens */
+@media (min-width: 1440px) {
+    body {
+        font-size: 18px;
+    }
+
+    .image {
+        width: 250px;
+        height: 250px;
+    }
+
+    .content {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .experience-table, .skills-table {
+        font-size: 1rem;
+    }
+}
+
+/* Responsive styles for mobile screens (375px) */
+@media (max-width: 375px) {
+    body {
+        font-size: 14px;
+    }
+
+    .header h1 {
+        font-size: 1.8rem;
+    }
+
+    .header h2 {
+        font-size: 1rem;
+    }
+
+    .image {
+        width: 100px;
+        height: 100px;
+    }
+
+    .content {
+        padding: 10px;
+    }
+
+    .experience-table, .skills-table {
+        font-size: 0.8rem;
+    }
+
+    .contact-form input, .contact-form textarea {
+        padding: 8px;
+    }
+
+    .contact-form button {
+        padding: 8px 16px;
+        font-size: 0.9rem;
+    }
 }
