@@ -1,30 +1,27 @@
-/* General body styling */
 body {
-    font-family: 'Poppins', sans-serif; /* М'який сучасний шрифт */
+    font-family: 'Poppins', sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f7e7c1; /* Пісочний відтінок для загального фону */
+    background-color: #f7e7c1;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     min-height: 100vh; 
 
-    /* Background Image */
     background-image: url('paper.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
 }
 
-/* Header */
 .header {
     text-align: center;
-    background-color: #b99a72; /* Пісочний відтінок */
+    background-color: #b99a72;
     color: white;
     padding: 20px;
-    width: 100%; /* Ensure the header takes full width */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Чітка тінь */
-    box-sizing: border-box; /* Include padding in the width */
+    width: 100%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
 }
 
 .header h1 {
@@ -40,7 +37,6 @@ body {
     font-weight: 300;
 }
 
-/* Image */
 .image-container {
     margin-top: 20px;
     margin-left: 90px;
@@ -53,7 +49,7 @@ body {
     height: 180px;
     object-fit: cover;
     border-radius: 50%;
-    border: 5px solid #b99a72; /* Пісочна рамка */
+    border: 5px solid #b99a72;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
@@ -65,7 +61,7 @@ body {
 
 .switcher button {
     padding: 10px 20px;
-    background-color: #f4b860; /* Теплий помаранчевий колір */
+    background-color: #f4b860;
     color: white;
     border: none;
     border-radius: 50px;
@@ -77,17 +73,16 @@ body {
     background-color: #e89a45;
 }
 
-/* Main content */
 .content {
     max-width: 800px;
     padding: 20px;
-    box-sizing: border-box; /* Make sure padding is included in width calculations */
-    margin: 0 auto; /* Center the content */
+    box-sizing: border-box;
+    margin: 0 auto;
 }
 
 .content h3 {
     font-size: 1.8rem;
-    color: #d59a6d; /* М'який пісочний колір */
+    color: #d59a6d;
     margin-bottom: 10px;
     border-bottom: 2px solid #d59a6d;
     display: inline-block;
@@ -101,11 +96,10 @@ body {
 
 .container {
     flex: 1;
-    width: 100%; /* Ensure the container takes full width */
+    width: 100%;
     box-sizing: border-box;
 }
 
-/* Experience Table */
 .experience-table, .skills-table {
     width: 100%; /* Make tables full width */
     border-collapse: collapse;
@@ -124,12 +118,11 @@ body {
     text-transform: uppercase;
 }
 
-/* Make tables responsive for smaller screens */
 @media (max-width: 600px) {
     .skills-table, .experience-table {
         display: block;
-        overflow-x: auto; /* Adds horizontal scroll on small screens */
-        white-space: nowrap; /* Prevents table cells from wrapping */
+        overflow-x: auto;
+        white-space: nowrap;
     }
 }
 
@@ -149,7 +142,7 @@ body {
     padding: 10px;
     border: 1px solid #ddd;
     border-radius: 5px;
-    box-sizing: border-box; /* Include padding in width calculation */
+    box-sizing: border-box;
 }
 
 .contact-form button {
@@ -167,89 +160,82 @@ body {
     background-color: #e89a45;
 }
 
-/* Footer */
 .footer {
-    width: 100%; /* Ensure the footer takes full width */
+    width: 100%;
     background-color: #b99a72;
     color: white;
     text-align: center;
     padding: 15px;
     position: relative;
     bottom: 0;
-    box-sizing: border-box; /* Include padding in the width calculation */
+    box-sizing: border-box;
 }
 
-/* Style 1: Default styles for larger screens */
 @media (min-width: 1440px) {
     body {
         font-size: 18px;
     }
 
-    .image {
-        width: 250px;
-        height: 250px;
+    header h1 {
+        font-size: 4rem;
     }
 
-    .content {
-        max-width: 1200px;
-        margin: 0 auto;
+    header h2 {
+        font-size: 2.5rem;
     }
 
-    .experience-table, .skills-table {
-        font-size: 1rem;
+    .container {
+        width: 70%;
+        padding: 40px;
     }
 
-    .image-container {
-        margin-left: 200px; /* Increased margin for larger screens */
-    }
-
-    .switcher {
-        margin-left: 200px;
+    .skills-table th, .skills-table td {
+        padding: 16px;
+        font-size: 1.1rem;
     }
 }
 
-/* Responsive styles for mobile screens (375px) */
 @media (max-width: 375px) {
     body {
         font-size: 14px;
     }
 
-    .header h1 {
-        font-size: 1.8rem;
+    header h1 {
+        font-size: 2rem;
     }
 
-    .header h2 {
-        font-size: 1rem;
+    header h2 {
+        font-size: 1.2rem;
     }
 
-    .image {
-        width: 100px;
-        height: 100px;
+    .container {
+        width: 90%;
+        padding: 15px;
     }
 
-    .content {
-        padding: 10px;
+    .skills-table th, .skills-table td {
+        padding: 8px;
+        font-size: 0.9rem;
     }
 
-    .experience-table, .skills-table {
+    .skills-table {
         font-size: 0.8rem;
     }
 
-    .image-container {
-        margin-left: 10px; /* Reduce margin for smaller screens */
-        margin-top: 10px; /* Reduce top margin */
+    .skills-table th, .skills-table td {
+        display: block;
+        width: 100%;
+        text-align: left;
     }
 
-    .switcher {
-        margin-left: 10px; /* Reduce margin for smaller screens */
-    }
-    
-    .contact-form input, .contact-form textarea {
-        padding: 8px;
+    .skills-table th {
+        background-color: #61dafb;
+        text-align: center;
     }
 
-    .contact-form button {
-        padding: 8px 16px;
-        font-size: 0.9rem;
+    .skills-table tr {
+        display: flex;
+        flex-direction: column;
+        border-bottom: 1px solid #ddd;
     }
 }
