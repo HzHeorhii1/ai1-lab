@@ -85,13 +85,14 @@ body {
     color: #d59a6d;
     margin-bottom: 10px;
     border-bottom: 2px solid #d59a6d;
-    display: inline-block;
+    text-align: right;
 }
 
 .content p {
     font-size: 1rem;
     line-height: 1.6;
     margin-bottom: 20px;
+    text-align: right;
 }
 
 .container {
