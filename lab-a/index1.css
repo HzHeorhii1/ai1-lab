@@ -56,7 +56,8 @@ body {
 /* Switcher Button */
 .switcher {
     margin-top: 20px;
-    margin-left: 90px;
+    margin-right: 180px;
+    text-align: right;
 }
 
 .switcher button {
