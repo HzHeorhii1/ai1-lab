@@ -56,15 +56,14 @@ body {
 /* Switcher Button */
 .switcher {
     margin-top: 20px;
-    margin-right: 180px;
-    text-align: right;
+    margin-left: 90px;
 }
 
 .switcher button {
     padding: 10px 20px;
     background-color: #f4b860;
     color: white;
-    border: none;
+    border: #d59a6d;
     border-radius: 50px;
     cursor: pointer;
     transition: background-color 0.3s;
