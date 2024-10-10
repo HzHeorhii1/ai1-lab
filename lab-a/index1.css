@@ -47,9 +47,10 @@ body {
     width: 180px;
     height: 180px;
     object-fit: cover;
-    border-radius: 50%;
-    border: 5px solid #b99a72;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    /* рамка */
+    border: 2px solid #b99a72;
+    border-radius: 15px;
 }
 
 .switch-between-pages {
@@ -140,9 +141,9 @@ body {
 }
 
 .experience-table th {
+    text-transform: uppercase;
     background-color: #d59a6d;
     color: white;
-    text-transform: uppercase;
 }
 
 .contact-form {
@@ -201,6 +202,7 @@ body {
         font-size: 2.5rem;
     }
 
+    
     .kunteynir {
         width: 70%;
         padding: 40px;
