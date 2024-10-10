@@ -4,12 +4,13 @@
 body {
     font-family: 'Kanit', sans-serif;
     margin: 0;
-    padding: 0;
-    background: linear-gradient(135deg, #f8f9fa, #e0e7ff, #a5b4fc);
+    background-color: #a5b4fc;
+    background-image: url('./cv-back.webp');
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     min-height: 100vh;
+    padding: 0;
     background-size: cover;
     background-position: center;
 }
