@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista Zadań</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .task-list {
+            list-style: none;
+            padding: 0;
+            margin-top: 20px;
+        }
+        .task-item {
+            display: flex;
+            align-items: center;
+            background: #fff;
+            border: 1px solid #ccc;
+            padding: 5px;
+            margin-bottom: 5px;
+            border-radius: 5px;
+        }
+        .task-item input[type="text"] {
+            flex-grow: 1;
+            border: none;
+            background: transparent;
+            padding: 5px;
+        }
+        .task-item input[type="date"] {
+            margin: 0 10px;
+        }
+        .task-item button {
+            background: none;
+            border: none;
+            color: red;
+            cursor: pointer;
+            margin-left: 5px;
+        }
+        #new-task, #task-date {
+            margin-right: 10px;
+        }
+        .highlight {
+            background-color: yellow;
+        }
+    </style>
+</head>
+<body>
+    <h1>Lista Zadań</h1>
+    <input type="text" id="search" placeholder="🔍 Wyszukaj..." oninput="searchTasks()" />
+
+    <ul id="task-list" class="task-list"></ul>
+
+    <input type="text" id="new-task" placeholder="Dodaj nowe zadanie..." maxlength="255">
+    <input type="date" id="task-date">
+    <button onclick="addTask()">Zapisz</button>
+
+    <script>
+        const taskList = document.getElementById('task-list');
+        const searchInput = document.getElementById('search');
+
+        // Load tasks from Local Storage on page load
+        document.addEventListener('DOMContentLoaded', loadTasks);
+
+        function addTask() {
+            const taskText = document.getElementById('new-task').value.trim();
+            const taskDate = document.getElementById('task-date').value;
+            
+            if (taskText.length < 3 || taskText.length > 255) {
+                alert('Zadanie musi zawierać co najmniej 3 znaki i nie więcej niż 255.');
+                return;
+            }
+
+            const task = {
+                text: taskText,
+                date: taskDate || ''
+            };
+            saveTask(task);
+            document.getElementById('new-task').value = '';
+            document.getElementById('task-date').value = '';
+        }
+
+        function saveTask(task) {
+            const tasks = getTasksFromStorage();
+            tasks.push(task);
+            localStorage.setItem('tasks', JSON.stringify(tasks));
+            renderTasks(tasks);
+        }
+
+        function getTasksFromStorage() {
+            return JSON.parse(localStorage.getItem('tasks')) || [];
+        }
+
+        function renderTasks(tasks) {
+            taskList.innerHTML = '';
+            tasks.forEach((task, index) => {
+                const listItem = document.createElement('li');
+                listItem.className = 'task-item';
+
+                const input = document.createElement('input');
+                input.type = 'text';
+                input.value = task.text;
+                input.onblur = () => updateTask(index, input.value, task.date);
+                input.onfocus = () => input.select();
+                listItem.appendChild(input);
+
+                const dateInput = document.createElement('input');
+                dateInput.type = 'date';
+                dateInput.value = task.date;
+                dateInput.onblur = () => updateTask(index, task.text, dateInput.value);
+                listItem.appendChild(dateInput);
+
+                const deleteButton = document.createElement('button');
+                deleteButton.innerHTML = '🗑️';
+                deleteButton.onclick = () => deleteTask(index);
+                listItem.appendChild(deleteButton);
+
+                taskList.appendChild(listItem);
+            });
+        }
+
+        function updateTask(index, newText, newDate) {
+            const tasks = getTasksFromStorage();
+            tasks[index] = { text: newText, date: newDate };
+            localStorage.setItem('tasks', JSON.stringify(tasks));
+            renderTasks(tasks);
+        }
+
+        function deleteTask(index) {
+            const tasks = getTasksFromStorage();
+            tasks.splice(index, 1);
+            localStorage.setItem('tasks', JSON.stringify(tasks));
+            renderTasks(tasks);
+        }
+
+        function loadTasks() {
+            const tasks = getTasksFromStorage();
+            renderTasks(tasks);
+        }
+
+        function searchTasks() {
+            const query = searchInput.value.toLowerCase();
+            if (query.length < 2) {
+                renderTasks(getTasksFromStorage());
+                return;
+            }
+
+            const filteredTasks = getTasksFromStorage().filter(task =>
+                task.text.toLowerCase().includes(query)
+            );
+
+            renderTasks(filteredTasks);
+
+            // Highlight the search query in results
+            document.querySelectorAll('.task-item input[type="text"]').forEach(input => {
+                const regex = new RegExp(`(${query})`, 'gi');
+                input.value = input.value.replace(regex, '<mark>$1</mark>');
+                input.innerHTML = input.innerHTML.replace(regex, '<mark>$1</mark>');
+            });
+        }
+    </script>
+</body>
+</html>

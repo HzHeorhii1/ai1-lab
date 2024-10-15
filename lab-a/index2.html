@@ -4,11 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Simple HTML/CSS Sandbox</title>
-    <link id="page-style" rel="stylesheet" type="text/css" href="index2.css"> <!-- Default to index1.css -->
+    <link id="page-style" rel="stylesheet" type="text/css" href="index2.css">
 </head>
 <body>
 
-<!-- Header -->
 <header class="header">
     <h1>Curriculum vitae</h1>
     <h2>About the Candidate</h2>
@@ -19,25 +18,22 @@
         <img src="face.webp" class="image" alt="Face in Rectangle Shape">
     </div>
 
-    <!-- Switcher button -->
     <div class="switcher">
         <a href="file:///C:/Users/hh53872/Desktop/ai1-lab/lab-a/index.html">
             <button type="button">sitch styles</button>
         </a>
     </div>
 
-    <!-- Main content -->
     <main class="content">
         <h3>Introduction</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p>
+        <p>Praesent vitae convallis mi. Morbi ut urna mi. Mauris tincidunt ut elit sit amet pharetra. Ut fermentum, lectus aliquet sagittis euismod, eros metus volutpat felis, ac gravida leo nunc nec quam. Donec varius, augue eget venenatis pharetra, augue lacus commodo turpis, at pellentesque nisi enim id urna. Fusce vestibulum lacinia suscipit. Mauris a mauris ligula. Maecenas ultrices, tellus quis sodales consectetur, est velit tincidunt diam, id bibendum lorem risus non quam. Proin feugiat cursus posuere. Nam cursus varius sem ac ullamcorper. Duis molestie egestas lorem ut pharetra. Praesent facilisis gravida luctus.</p>
 
         <h3>Experience</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas malesuada. Praesent libero. Sed cursus ante dapibus diam. Maecenas faucibus mollis interdum.</p>
+        <p>Praesent vitae convallis mi. Morbi ut urna mi. Mauris tincidunt ut elit sit amet pharetra. Ut fermentum, lectus aliquet sagittis euismod, eros metus volutpat felis, ac gravida leo nunc nec quam. Donec varius, augue eget venenatis pharetra, augue lacus commodo turpis, at pellentesque nisi enim id urna. Fusce vestibulum lacinia suscipit. Mauris a mauris ligula. Maecenas ultrices, tellus quis sodales consectetur, est velit tincidunt diam, id bibendum lorem risus non quam. Proin feugiat cursus posuere. Nam cursus varius sem ac ullamcorper. Duis molestie egestas lorem ut pharetra. Praesent facilisis gravida luctus.</p>
 
         <h3>Education</h3>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum.</p>
 
-        <!-- Unordered List -->
         <h3>Skills</h3>
         <ul>
             <li>HTML & CSS</li>
@@ -45,7 +41,6 @@
             <li>Git & GitHub</li>
         </ul>
 
-        <!-- Table -->
         <h3>Work Experience</h3>
         <table class="experience-table">
             <tr>
@@ -193,7 +188,6 @@
             </tbody>
         </table>
 
-        <!-- Form -->
         <h3>Contact Me</h3>
         <form class="contact-form">
             <label for="name">Name:</label>
@@ -210,20 +204,9 @@
     </main>
 </div>
 
-<!-- Footer -->
 <footer class="footer">
     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p>
 </footer>
-
-<script>
-    let isIndex1 = true;
-
-    function toggleStyle() {
-        const stylesheet = document.getElementById("page-style");
-        stylesheet.href = isIndex1 ? "index2.css" : "index1.css";
-        isIndex1 = !isIndex1; 
-    }
-</script>
 
 </body>
 </html>
