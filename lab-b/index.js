@@ -1,31 +1,43 @@
-// f12 -> application -> localstorage
 class Todo {
-
-    constructor(){
+    constructor() {
         this.taskList = document.getElementById('task-list');
         this.searchInput = document.getElementById('search');
-        document.addEventListener('DOMContentLoaded', loadTasks);
+        document.addEventListener('DOMContentLoaded', () => this.loadTasks());
+        document.querySelector('button').addEventListener('click', () => this.addTask());
+
+        this.searchInput.addEventListener('input', () => this.searchTasks());
     }
 
     addTask = () => {
         const taskText = document.getElementById('new-task').value.trim();
         const taskDate = document.getElementById('task-date').value;
-        const lengthValidation = taskText.length < 3 || taskText.length > 255;
-        if(lengthValidation) { alert('min 3, max 255 characters'); return; }
+
+        // Валідація: довжина тексту і дата
+        if (taskText.length < 3 || taskText.length > 255) {
+            alert('min 3, max 255 characters');
+            return;
+        }
+
+        // Перевірка дати: дата повинна бути або порожня, або в майбутньому
+        if (taskDate && new Date(taskDate) <= new Date()) {
+            alert('Дата повинна бути або порожня, або в майбутньому!');
+            return;
+        }
+
         const task = {
             text: taskText,
             date: taskDate || ''
         };
-        saveTask(task);
+        this.saveTask(task);
         document.getElementById('new-task').value = '';
         document.getElementById('task-date').value = '';
     }
 
-    saveTask = () => {
-        const tasks = getTasksFromStorage();
+    saveTask = (task) => {
+        const tasks = this.getTasksFromStorage();
         tasks.push(task);
         localStorage.setItem('tasks', JSON.stringify(tasks));
-        renderTasks(tasks);
+        this.renderTasks(tasks);
     }
 
     getTasksFromStorage = () => {
@@ -33,34 +45,83 @@ class Todo {
         return JSON.parse(tasks) || [];
     }
 
-    renderTasks = (tasks) => {
-        taskList.innerHTML = '';
-
-        // decompose this!!!!!!!!!!!!!!!!!!!!
+    renderTasks = (tasks, query = '') => {
+        this.taskList.innerHTML = '';
 
         for (const [index, task] of tasks.entries()) {
             const listItem = document.createElement('li');
             listItem.className = 'task-item';
 
-            const input = document.createElement('input');
-            input.type = 'text';
-            input.value = task.text;
-            input.onblur = () => updateTask(index, input.value, task.date);
-            input.onfocus = () => input.select();
-            listItem.appendChild(input);
+            const taskTextSpan = document.createElement('span');
+            taskTextSpan.innerHTML = this.highlightSearchQuery(task.text, query);
+            taskTextSpan.contentEditable = true;
+            taskTextSpan.onblur = () => this.updateTask(index, taskTextSpan.innerText, task.date);
+            taskTextSpan.onfocus = () => taskTextSpan.select();
+            listItem.appendChild(taskTextSpan);
 
             const dateInput = document.createElement('input');
             dateInput.type = 'date';
             dateInput.value = task.date;
-            dateInput.onblur = () => updateTask(index, task.text, dateInput.value);
+            dateInput.onblur = () => this.updateTask(index, task.text, dateInput.value);
             listItem.appendChild(dateInput);
 
             const deleteButton = document.createElement('button');
             deleteButton.innerHTML = '🗑️';
-            deleteButton.onclick = () => deleteTask(index);
+            deleteButton.onclick = () => this.deleteTask(index);
             listItem.appendChild(deleteButton);
 
-            taskList.appendChild(listItem);
+            this.taskList.appendChild(listItem);
         }
     }
+
+    updateTask = (index, newText, newDate) => {
+        const tasks = this.getTasksFromStorage();
+
+        // Перевірка дати перед оновленням
+        if (newDate && new Date(newDate) <= new Date()) {
+            alert('Дата повинна бути або порожня, або в майбутньому!');
+            return;
+        }
+
+        tasks[index] = { text: newText, date: newDate };
+        localStorage.setItem('tasks', JSON.stringify(tasks));
+        this.renderTasks(tasks);
+    }
+
+    deleteTask = (index) => {
+        const tasks = this.getTasksFromStorage();
+        tasks.splice(index, 1);
+        localStorage.setItem('tasks', JSON.stringify(tasks));
+        this.renderTasks(tasks);
+    }
+
+    loadTasks = () => {
+        const tasks = this.getTasksFromStorage();
+        this.renderTasks(tasks);
+    }
+
+    searchTasks = () => {
+        const query = this.searchInput.value.toLowerCase();
+        if (query.length < 2) {
+            this.renderTasks(this.getTasksFromStorage());
+            return;
+        }
+
+        const filteredTasks = this.getTasksFromStorage().filter(task =>
+            task.text.toLowerCase().includes(query)
+        );
+
+        this.renderTasks(filteredTasks, query);
+    }
+
+    highlightSearchQuery = (text, query) => {
+        if (!query) return text; // Якщо немає пошукового запиту, не виділяємо
+
+        const regex = new RegExp(`(${query})`, 'gi');
+        return text.replace(regex, '<mark>$1</mark>'); // Виділення <mark>
+    }
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+    new Todo();
+});
