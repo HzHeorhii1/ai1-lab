@@ -41,6 +41,16 @@ const addTask = () => {
     const taskText = document.getElementById('new-task').value.trim();
     const taskDate = document.getElementById('task-date').value;
 
+    if (!taskText) {
+        alert('Task name is required');
+        return;
+    }
+
+    if (!taskDate) {
+        alert('Task date is required');
+        return;
+    }
+
     if (taskText.length < 3 || taskText.length > 255) {
         alert('min 3, max 255 characters');
         return;

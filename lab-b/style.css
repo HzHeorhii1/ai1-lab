@@ -9,7 +9,6 @@ body {
     font-family: 'Caveat', cursive;
 }
 
-/* Контейнер */
 .container {
     width: 600px;
     padding: 20px;
@@ -19,7 +18,6 @@ body {
     text-align: center;
 }
 
-/* Заголовок */
 h1 {
     margin-bottom: 10px;
     font-size: 2rem;
@@ -27,7 +25,6 @@ h1 {
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
 }
 
-/* Пошук */
 #search {
     width: 80%;
     padding: 10px;
@@ -37,7 +34,6 @@ h1 {
     box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
-/* Список завдань */
 .task-list {
     list-style: none;
     padding: 0;
@@ -55,8 +51,6 @@ h1 {
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
-/* Поля введення */
-/* Поля введення */
 .task-inputs {
     display: flex;
     width: 80%;
@@ -73,7 +67,7 @@ input[type="text"] {
 }
 
 input[type="date"] {
-    width: 150px; /* встановлює конкретну ширину для поля дати */
+    width: 150px;
     padding: 10px;
     border: 2px solid #ccc;
     border-radius: 5px;
