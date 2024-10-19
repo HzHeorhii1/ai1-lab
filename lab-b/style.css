@@ -1,0 +1,96 @@
+/* Загальні стилі для сторінки */
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #FFDEE9, #B5FFFC);
+    font-family: 'Caveat', cursive;
+}
+
+/* Контейнер */
+.container {
+    width: 600px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    text-align: center;
+}
+
+/* Заголовок */
+h1 {
+    margin-bottom: 10px;
+    font-size: 2rem;
+    color: #333;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Пошук */
+#search {
+    width: 80%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Список завдань */
+.task-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 10px 0;
+}
+
+.task-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    margin-bottom: 5px;
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Поля введення */
+/* Поля введення */
+.task-inputs {
+    display: flex;
+    width: 80%;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+input[type="text"] {
+    flex: 1;
+    padding: 10px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+input[type="date"] {
+    width: 150px; /* встановлює конкретну ширину для поля дати */
+    padding: 10px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    background: linear-gradient(45deg, #FF6F61, #FFB88C);
+    color: white;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+}
