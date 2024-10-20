@@ -1,4 +1,3 @@
-/* Загальні стилі для сторінки */
 body {
     margin: 0;
     height: 100vh;
@@ -49,6 +48,7 @@ h1 {
     background: #fff;
     border-radius: 5px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    font-size: 32px;
 }
 
 .task-item.completed {
@@ -107,5 +107,24 @@ input[disabled] {
 
 span[contenteditable="false"] {
     color: gray;
-    text-decoration: line-through;
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+    text-decoration: none;
+}
+
+span[contenteditable="false"]::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 100%;
+    width: 100%;
+    height: 2px;
+    background-color: gray;
+    transform: translateX(-100%);
+    transition: transform 0.5s ease-out;
+}
+
+.task-item.completed span[contenteditable="false"]::after {
+    transform: translateX(0);
 }
