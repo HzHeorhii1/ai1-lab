@@ -1,44 +1,5 @@
 const getTasksFromStorage = () => JSON.parse(localStorage.getItem('tasks')) || [];
-
 const saveTasksToStorage = (tasks) => localStorage.setItem('tasks', JSON.stringify(tasks));
-
-const drawTasks = (tasks, query = '') => {
-    const taskList = document.getElementById('task-list');
-    taskList.innerHTML = '';
-
-    tasks.forEach((task, index) => {
-        const listItem = document.createElement('li');
-        listItem.className = `task-item ${task.completed ? 'completed' : ''}`;
-
-        const checkbox = document.createElement('input');
-        checkbox.type = 'checkbox';
-        checkbox.checked = task.completed || false;
-        checkbox.onchange = () => toggleTaskCompletion(index, checkbox.checked);
-        listItem.appendChild(checkbox);
-
-        const taskTextSpan = document.createElement('span');
-        taskTextSpan.innerHTML = highlightSearchQuery(task.text, query);
-        taskTextSpan.contentEditable = !task.completed;
-        taskTextSpan.style.color = task.completed ? 'gray' : 'black';
-        taskTextSpan.onblur = () => updateTask(index, taskTextSpan.innerText, task.date);
-        listItem.appendChild(taskTextSpan);
-
-        const dateInput = document.createElement('input');
-        dateInput.type = 'date';
-        dateInput.value = task.date;
-        dateInput.disabled = task.completed;
-        dateInput.style.color = task.completed ? 'gray' : 'black';
-        dateInput.onblur = () => updateTask(index, task.text, dateInput.value);
-        listItem.appendChild(dateInput);
-
-        const deleteButton = document.createElement('button');
-        deleteButton.innerHTML = '🗑️';
-        deleteButton.onclick = () => deleteTask(index);
-        listItem.appendChild(deleteButton);
-
-        taskList.appendChild(listItem);
-    });
-};
 
 const highlightSearchQuery = (text, query) => {
     if (!query) return text;
@@ -46,34 +7,69 @@ const highlightSearchQuery = (text, query) => {
     return text.replace(regex, '<mark>$1</mark>');
 };
 
+const drawTasks = (tasks, query = '') => {
+    const taskList = document.getElementById('task-list');
+    const template = taskList.querySelector('.task-item');
+    taskList.innerHTML = ''; // u need 2 clear it 
+    tasks.forEach((task, index) => {
+        const listItem = template.cloneNode(true);
+        listItem.dataset.index = index;
+        listItem.querySelector('.task-checkbox').checked = task.completed;
+        listItem.querySelector('.task-text').innerHTML = highlightSearchQuery(task.text, query);
+        listItem.querySelector('.task-text').contentEditable = !task.completed;
+        listItem.querySelector('.task-date').value = task.date;
+        listItem.querySelector('.task-date').disabled = task.completed;
+        listItem.querySelector('.task-checkbox').addEventListener('change', (e) => {
+            taskComplettion(index, e.target.checked);
+        });
+        listItem.querySelector('.task-text').addEventListener('blur', (e) => {
+            updateTask(index, e.target.innerText, listItem.querySelector('.task-date').value);
+        });
+        listItem.querySelector('.task-date').addEventListener('blur', (e) => {
+            updateTask(index, listItem.querySelector('.task-text').innerText, e.target.value);
+        });
+        listItem.querySelector('.delete-task').addEventListener('click', () => {
+            deleteTask(index);
+        });
+
+        taskList.appendChild(listItem);
+    });
+};
+
 const addTask = () => {
     const taskText = document.getElementById('new-task').value.trim();
     const taskDate = document.getElementById('task-date').value;
 
     if (!taskText) {
-        alert('Task name is required');
+        alert('task name is required');
         return;
     }
 
     if (!taskDate) {
-        alert('Task date is required');
+        alert('task date is required');
         return;
     }
 
     if (taskText.length < 3 || taskText.length > 255) {
-        alert('Task name must be between 3 and 255 characters');
+        alert('task name must be between 3 and 255 characters');
         return;
     }
 
-    if (new Date(taskDate) <= new Date()) {
-        alert('You cannot set a task date in the past');
+    const futereDataChecker = new Date(taskDate) <= new Date();
+
+    if (futereDataChecker) {
+        alert('u cannot set a task date in the past');
+        return;
+    }
+
+    if (query.length < 2) {
+        drawTasks(tasks);
         return;
     }
 
     const task = { text: taskText, date: taskDate, completed: false };
     const tasks = getTasksFromStorage();
-    const updatedTasks = [...tasks, task]
-
+    const updatedTasks = [...tasks, task];
     saveTasksToStorage(updatedTasks);
     drawTasks(updatedTasks);
     document.getElementById('new-task').value = '';
@@ -84,12 +80,14 @@ const updateTask = (index, newText, newDate) => {
     const tasks = getTasksFromStorage();
 
     if (!newText || !newDate) {
-        alert('Task name and date cannot be empty');
+        alert('task name and date can not be empty');
         return;
     }
 
-    if (new Date(newDate) <= new Date()) {
-        alert('You cannot set a task date in the past');
+    const futereDataChecker = new Date(taskDate) <= new Date();
+
+    if (futereDataChecker) {
+        alert('u cannot set a task date in the past');
         return;
     }
 
@@ -105,7 +103,7 @@ const deleteTask = (index) => {
     drawTasks(updatedTasks);
 };
 
-const toggleTaskCompletion = (index, isCompleted) => {
+const taskComplettion = (index, isCompleted) => {
     const tasks = getTasksFromStorage();
     const updatedTasks = tasks.map((task, i) => i === index ? { ...task, completed: isCompleted } : task);
     saveTasksToStorage(updatedTasks);

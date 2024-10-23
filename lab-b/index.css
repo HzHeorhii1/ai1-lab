@@ -8,7 +8,44 @@ body {
     font-family: 'Caveat', cursive;
 }
 
-.container {
+
+input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+input[type="checkbox"]:checked {
+    background-color: green;
+}
+
+input[disabled] {
+    color: gray;
+}
+
+span[contenteditable="false"] {
+    color: gray;
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+    text-decoration: none;
+}
+
+span[contenteditable="false"]::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 100%;
+    width: 100%;
+    height: 2px;
+    background-color: gray;
+    transform: translateX(-100%);
+    transition: transform 0.5s ease-out;
+}
+
+.task-item.completed span[contenteditable="false"]::after {
+    transform: translateX(0);
+}
+
+.kunteynir {
     width: 600px;
     padding: 20px;
     background: rgba(255, 255, 255, 0.9);
@@ -91,40 +128,4 @@ button {
 button:hover {
     transform: scale(1.05);
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
-}
-
-input[type="checkbox"] {
-    margin-right: 10px;
-}
-
-input[type="checkbox"]:checked {
-    background-color: green;
-}
-
-input[disabled] {
-    color: gray;
-}
-
-span[contenteditable="false"] {
-    color: gray;
-    position: relative;
-    display: inline-block;
-    overflow: hidden;
-    text-decoration: none;
-}
-
-span[contenteditable="false"]::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 100%;
-    width: 100%;
-    height: 2px;
-    background-color: gray;
-    transform: translateX(-100%);
-    transition: transform 0.5s ease-out;
-}
-
-.task-item.completed span[contenteditable="false"]::after {
-    transform: translateX(0);
 }
