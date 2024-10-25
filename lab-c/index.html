@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Map Puzzle Game</title>
+    <link rel="stylesheet" href="leaflet-1.7.1/leaflet.css" />
+    <script src="leaflet-1.7.1/leaflet-src.js"></script>
+    <script src="leaflet-1.7.1/leaflet-providers.js"></script>
+    <script src="leaflet-1.7.1/leaflet-image.js"></script>
+    <style>
+        #map {
+            width: 600px;
+            height: 300px;
+            border: 1px solid black;
+            margin-bottom: 20px;
+        }
+
+        #gameContainer {
+            display: flex;
+            justify-content: space-between;
+            width: 1000px;
+            margin: 0 auto;
+        }
+
+        #dropzoneContainer, #puzzleContainer {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-gap: 5px;
+        width: 420px;
+        height: 420px;
+        border: 3px solid #333;
+        padding: 5px;
+        box-sizing: border-box;
+    }
+
+    /* Стиль для кожного пазлу */
+    .puzzle-piece, .dropzone {
+        width: 100px;
+        height: 100px;
+        border: 2px solid #ccc;
+        background-color: lightblue;
+    }
+
+/* Drop-зони зберігають свій стиль */
+.dropzone {
+    border: 2px dashed #7f7fe9;
+}
+
+        button {
+            margin-right: 10px;
+        }
+
+        .dragging {
+            opacity: 0.5;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Map Puzzle Game</h1>
+
+    <!-- Карта -->
+    <div id="map"></div>
+    <button id="getLocation">Get Current Location</button>
+    <button id="saveButton">Save Map as Puzzle</button>
+
+    <!-- Контейнери для пазлів і зон розміщення -->
+    <div id="gameContainer">
+        <!-- Зона для пазлів зліва -->
+        <div id="dropzoneContainer"></div>
+
+        <!-- Контейнер для самих пазлів справа -->
+        <div id="puzzleContainer"></div>
+    </div>
+
+    <script>
+        let map = L.map('map').setView([53.430127, 14.564802], 18);
+        let marker;
+
+        L.tileLayer.provider('Esri.WorldImagery').addTo(map);
+
+        // Отримання поточної локації
+        navigator.geolocation.getCurrentPosition(position => {
+            const lat = position.coords.latitude;
+            const lon = position.coords.longitude;
+            map.setView([lat, lon], 13);
+
+            marker = L.marker([lat, lon]).addTo(map).bindPopup("You are here!").openPopup();
+        });
+
+        document.getElementById("getLocation").addEventListener("click", function () {
+            if (!navigator.geolocation) {
+                console.log("No geolocation.");
+                return;
+            }
+
+            navigator.geolocation.getCurrentPosition(position => {
+                const lat = position.coords.latitude;
+                const lon = position.coords.longitude;
+
+                map.setView([lat, lon]);
+                if (marker) {
+                    map.removeLayer(marker);
+                }
+                marker = L.marker([lat, lon]).addTo(map).bindPopup("You are here!").openPopup();
+            }, positionError => {
+                console.error(positionError);
+            });
+        });
+
+        // Генерація пазлів після збереження карти
+        document.getElementById("saveButton").addEventListener("click", function () {
+            leafletImage(map, function (err, canvas) {
+                if (err) {
+                    console.error(err);
+                    return;
+                }
+
+                let rasterMap = document.createElement('canvas');
+                rasterMap.width = 400;
+                rasterMap.height = 400;
+                let rasterContext = rasterMap.getContext("2d");
+                rasterContext.clearRect(0, 0, rasterMap.width, rasterMap.height);
+                rasterContext.drawImage(canvas, 0, 0, 400, 400);
+
+                generatePuzzlePieces(rasterMap);
+                generateDropzones();
+            });
+        });
+
+        function generatePuzzlePieces(rasterMap) {
+            const puzzleContainer = document.getElementById('puzzleContainer');
+            puzzleContainer.innerHTML = '';  // Очищуємо контейнер пазлів
+
+            const pieceSize = 100;
+            let pieces = [];
+
+            // Генеруємо 16 пазлів
+            for (let row = 0; row < 4; row++) {
+                for (let col = 0; col < 4; col++) {
+                    let pieceCanvas = document.createElement('canvas');
+                    pieceCanvas.width = pieceSize;
+                    pieceCanvas.height = pieceSize;
+                    let context = pieceCanvas.getContext('2d');
+                    context.drawImage(rasterMap, col * pieceSize, row * pieceSize, pieceSize, pieceSize, 0, 0, pieceSize, pieceSize);
+
+                    let piece = document.createElement('div');
+                    piece.classList.add('puzzle-piece');
+                    piece.appendChild(pieceCanvas);
+                    piece.setAttribute('draggable', true);
+                    piece.addEventListener('dragstart', handleDragStart);
+                    piece.addEventListener('dragend', handleDragEnd);
+
+                    pieces.push(piece);
+                }
+            }
+
+            // Перемішуємо пазли
+            pieces = shuffleArray(pieces);
+
+            // Додаємо пазли в контейнер
+            pieces.forEach(piece => {
+                puzzleContainer.appendChild(piece);
+            });
+        }
+
+        function generateDropzones() {
+            const dropzoneContainer = document.getElementById('dropzoneContainer');
+            dropzoneContainer.innerHTML = '';  // Очищуємо контейнер зон для пазлів
+
+            for (let i = 0; i < 16; i++) {
+                let dropzone = document.createElement('div');
+                dropzone.classList.add('dropzone');
+                dropzone.addEventListener('dragover', handleDragOver);
+                dropzone.addEventListener('drop', handleDrop);
+
+                dropzoneContainer.appendChild(dropzone);
+            }
+        }
+
+        function handleDragStart(event) {
+            event.dataTransfer.setData('text/plain', event.target.id);
+            event.target.classList.add('dragging');
+        }
+
+        function handleDragEnd(event) {
+            event.target.classList.remove('dragging');
+        }
+
+        function handleDragOver(event) {
+            event.preventDefault();
+        }
+
+        function handleDrop(event) {
+            event.preventDefault();
+            const draggedElement = document.querySelector('.dragging');
+            event.target.appendChild(draggedElement);
+        }
+
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+    </script>
+
+</body>
+</html>
