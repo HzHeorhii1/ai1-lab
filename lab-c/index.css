@@ -1,0 +1,70 @@
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to right, #83a4d4, #b6fbff);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+h1 {
+    color: #333;
+}
+
+#map {
+    width: 600px;
+    height: 300px;
+    border: 1px solid black;
+    margin-bottom: 20px;
+}
+
+#gameContainer {
+    display: flex;
+    justify-content: space-between;
+    width: 1000px;
+    margin: 0 auto;
+}
+
+#dropzoneContainer, #puzzleContainer {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 5px;
+    width: 450px;
+    height: 450px;
+    border: 3px solid #333;
+    padding: 5px;
+    box-sizing: border-box;
+}
+
+.puzzle-piece, .dropzone {
+    width: 100px;
+    height: 100px;
+    border: 2px solid #ccc;
+    background-color: lightblue;
+}
+
+.dropzone {
+    border: 2px dashed #7f7fe9;
+}
+
+button {
+    margin-bottom: 10px;
+    margin-right: 10px;
+    padding: 8px 16px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    background-color: #333;
+    color: white;
+}
+
+button:hover {
+    background-color: #555;
+}
+
+.dragging {
+    opacity: 0.5;
+}

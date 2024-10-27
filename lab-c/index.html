@@ -74,6 +74,7 @@
     </div>
 
     <script>
+
         let map = L.map('map').setView([53.430127, 14.564802], 18);
         let marker;
 
@@ -130,12 +131,12 @@
 
         function generatePuzzlePieces(rasterMap) {
             const puzzleContainer = document.getElementById('puzzleContainer');
-            puzzleContainer.innerHTML = '';  // Очищуємо контейнер пазлів
+            puzzleContainer.innerHTML = '';  // Clear previous puzzle pieces
 
             const pieceSize = 100;
             let pieces = [];
 
-            // Генеруємо 16 пазлів
+            // Generate 16 puzzle pieces with unique IDs
             for (let row = 0; row < 4; row++) {
                 for (let col = 0; col < 4; col++) {
                     let pieceCanvas = document.createElement('canvas');
@@ -148,6 +149,8 @@
                     piece.classList.add('puzzle-piece');
                     piece.appendChild(pieceCanvas);
                     piece.setAttribute('draggable', true);
+                    piece.id = `piece-${row}-${col}`; // Assign unique ID
+                    piece.dataset.position = `${row}-${col}`; // Store correct position for validation
                     piece.addEventListener('dragstart', handleDragStart);
                     piece.addEventListener('dragend', handleDragEnd);
 
@@ -155,10 +158,8 @@
                 }
             }
 
-            // Перемішуємо пазли
+            // Shuffle and append pieces
             pieces = shuffleArray(pieces);
-
-            // Додаємо пазли в контейнер
             pieces.forEach(piece => {
                 puzzleContainer.appendChild(piece);
             });
@@ -194,7 +195,49 @@
         function handleDrop(event) {
             event.preventDefault();
             const draggedElement = document.querySelector('.dragging');
-            event.target.appendChild(draggedElement);
+
+            // Check if the dropzone is empty
+            if (event.target.classList.contains('dropzone') && event.target.children.length === 0) {
+                event.target.appendChild(draggedElement);
+
+                // Check if the puzzle is solved
+                if (isPuzzleSolved()) {
+                    alert('Puzzle completed successfully!');
+                }
+            }
+        }
+
+        function isPuzzleSolved() {
+            const dropzones = document.querySelectorAll('.dropzone');
+            const allCorrect = Array.from(dropzones).every((dropzone, index) => {
+                const piece = dropzone.firstElementChild;
+                return piece && piece.dataset.position === indexToPosition(index);
+            });
+
+            if (allCorrect) {
+                alert('Puzzle completed successfully!');
+                
+                // Clear and regenerate the puzzle pieces and drop zones
+                resetGame();
+            }
+            
+            return allCorrect;
+        }
+
+        function resetGame() {
+            // Clear puzzle pieces and drop zones
+            document.getElementById('puzzleContainer').innerHTML = '';
+            document.getElementById('dropzoneContainer').innerHTML = '';
+
+            // Regenerate puzzle pieces and drop zones
+            generatePuzzlePieces(rasterMap);
+            generateDropzones();
+        }
+
+        function indexToPosition(index) {
+            const row = Math.floor(index / 4);
+            const col = index % 4;
+            return `${row}-${col}`;
         }
 
         function shuffleArray(array) {
