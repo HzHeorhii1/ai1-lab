@@ -9,15 +9,22 @@ body {
     margin: 0;
 }
 
-h1 {
-    color: #333;
+#mapContainer {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    margin-bottom: 20px;
 }
 
-#map {
-    width: 600px;
-    height: 300px;
-    border: 1px solid black;
-    margin-bottom: 20px;
+#map, #savedMapCanvas {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 5px;
+    width: 400px;
+    height: 400px;
+    border: 3px solid #333;
+    padding: 5px;
+    box-sizing: border-box;
 }
 
 #gameContainer {

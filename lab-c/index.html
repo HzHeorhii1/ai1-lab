@@ -10,12 +10,12 @@
     <script src="leaflet-1.7.1/leaflet-image.js"></script>
 </head>
 <body>
-    <h1>Play with Map</h1>
-    <div id="map"></div>
+    <div id="mapContainer">
+        <div id="map"></div>
+        <canvas id="savedMapCanvas" width="400" height="400" style="border: 1px solid black; margin-bottom: 20px;"></canvas>
+    </div>
     <button id="getLocation">Get Current Location</button>
     <button id="saveButton">Save Map as Puzzle</button>
-    <h2>Saved Map Preview</h2>
-    <canvas id="savedMapCanvas" width="400" height="400" style="border: 1px solid black; margin-bottom: 20px;"></canvas>
     <script src="index.js"></script>
     <div id="gameContainer">
         <div id="dropzoneContainer"></div>
