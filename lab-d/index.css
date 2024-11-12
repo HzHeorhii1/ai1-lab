@@ -1,51 +1,75 @@
+@import url('https://fonts.googleapis.com/css2?family=Sour+Gummy&display=swap');
+
 body {
-    font-family: 'Pacifico', cursive;
-    background: linear-gradient(135deg, #72c2d1, #f3a683);
-    color: #fff;
+    font-family: 'Sour Gummy', Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: url('cloud.jpg') no-repeat center center fixed;
+    background-size: cover;
+    color: #333;
+}
+
+#weather-search-params {
+    margin-top: 30px;
     text-align: center;
-    padding: 20px;
-    margin: 0;
 }
 
-h1 {
-    margin-bottom: 20px;
-    font-size: 3rem;
-}
-
-input[type="text"] {
+#locationInput {
     padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
     border-radius: 5px;
-    border: none;
-    outline: none;
-    width: 60%;
-    max-width: 300px;
-    margin-bottom: 10px;
-    font-size: 1rem;
+    width: 200px;
+    margin-right: 10px;
 }
 
-button {
-    padding: 10px 20px;
-    border-radius: 5px;
+#checkButton {
+    padding: 10px 15px;
+    font-size: 16px;
     border: none;
-    background-color: #ff7e67;
-    color: #fff;
-    font-size: 1rem;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
     cursor: pointer;
-    transition: background-color 0.3s;
 }
 
-button:hover {
-    background-color: #ff5233;
+#checkButton:hover {
+    background-color: #0056b3;
 }
 
-#currentWeather, #forecast {
+#weather-results-container {
     margin-top: 20px;
-    padding: 15px;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 500px;
 }
 
-#forecast div {
-    margin: 10px 0;
+.weather-block {
+    display: flex;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.9);
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 15px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.weather-date {
+    font-size: 14px;
+    font-weight: bold;
+    color: #555;
+}
+
+.weather-temperature,
+.weather-temperature-feels-like,
+.weather-description {
+    font-size: 16px;
+    margin-left: 10px;
+}
+
+.weather-icon {
+    width: 50px;
+    height: 50px;
+    margin-left: auto;
 }
