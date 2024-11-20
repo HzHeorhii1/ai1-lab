@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Style Switcher</title>
+    <link id="page-style" rel="stylesheet" type="text/css" href="./styles/index1.css">
+    <script src="dist/index.js" defer></script>
+</head>
+<body>
+    <header class="header">
+        <h1>Curriculum Vitae</h1>
+        <h2>About the Candidate</h2>
+    </header>
+
+    <div class="container">
+        <div class="image-container">
+            <img src="./styles/face.webp" class="image" alt="Profile Picture">
+        </div>
+
+        <div class="switcher"></div>
+
+        <main class="content">
+        <h3>Introduction</h3>
+        <p>Praesent vitae convallis mi. Morbi ut urna mi. Mauris tincidunt ut elit sit amet pharetra. Ut fermentum, lectus aliquet sagittis euismod, eros metus volutpat felis, ac gravida leo nunc nec quam. Donec varius, augue eget venenatis pharetra, augue lacus commodo turpis, at pellentesque nisi enim id urna. Fusce vestibulum lacinia suscipit. Mauris a mauris ligula. Maecenas ultrices, tellus quis sodales consectetur, est velit tincidunt diam, id bibendum lorem risus non quam. Proin feugiat cursus posuere. Nam cursus varius sem ac ullamcorper. Duis molestie egestas lorem ut pharetra. Praesent facilisis gravida luctus.</p>
+
+        <h3>Experience</h3>
+        <p>Praesent vitae convallis mi. Morbi ut urna mi. Mauris tincidunt ut elit sit amet pharetra. Ut fermentum, lectus aliquet sagittis euismod, eros metus volutpat felis, ac gravida leo nunc nec quam. Donec varius, augue eget venenatis pharetra, augue lacus commodo turpis, at pellentesque nisi enim id urna. Fusce vestibulum lacinia suscipit. Mauris a mauris ligula. Maecenas ultrices, tellus quis sodales consectetur, est velit tincidunt diam, id bibendum lorem risus non quam. Proin feugiat cursus posuere. Nam cursus varius sem ac ullamcorper. Duis molestie egestas lorem ut pharetra. Praesent facilisis gravida luctus.</p>
+
+        <h3>Education</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum.</p>
+
+        <h3>Skills</h3>
+        <ul>
+            <li>HTML & CSS</li>
+            <li>JavaScript</li>
+            <li>Git & GitHub</li>
+        </ul>
+
+        <h3>Work Experience</h3>
+        <table class="experience-table">
+            <tr>
+                <th>Company</th>
+                <th>Role</th>
+                <th>Years</th>
+            </tr>
+            <tr>
+                <td>ABC Corp</td>
+                <td>Front-End Developer</td>
+                <td>2019-2022</td>
+            </tr>
+            <tr>
+                <td>XYZ Ltd</td>
+                <td>Web Designer</td>
+                <td>2016-2019</td>
+            </tr>
+        </table>
+
+        <h3>Programming Skills Map</h3>
+        <table class="skills-table">
+            <thead>
+                <tr>
+                    <th>Async contracts</th>
+                    <th>JavaScript & Node.js specific</th>
+                    <th>Theory</th>
+                    <th>Techniques</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>🟩 Callback-last</td>
+                    <td>🟦 Timers</td>
+                    <td>🟩 Event Loop</td>
+                    <td>⬜ async.js library</td>
+                </tr>
+                <tr>
+                    <td>🟦 Error-first</td>
+                    <td>🟦 setImmediate</td>
+                    <td>🟩 Async error</td>
+                    <td>⬜ Async composition</td>
+                </tr>
+                <tr>
+                    <td>🟩 Promise</td>
+                    <td>🟦 nextTick</td>
+                    <td>🟩 try..catch</td>
+                    <td>⬜ Rx.js</td>
+                </tr>
+                <tr>
+                    <td>🟩 Async function</td>
+                    <td>⬜ AbortController</td>
+                    <td>🟩 Non-blocking</td>
+                    <td>🟩 Sequential async</td>
+                </tr>
+                <tr>
+                    <td>🟩 await</td>
+                    <td>🟦 Promise unhandled rejection</td>
+                    <td>🟩 Async I/O</td>
+                    <td>🟩 Parallel async</td>
+                </tr>
+                <tr>
+                    <td>🟩 Generator</td>
+                    <td>🟦 Promise double resolve</td>
+                    <td>🟦 Pattern Reactor</td>
+                    <td>🟩 Promise.all</td>
+                </tr>
+                <tr>
+                    <td>🟩 Async Generator</td>
+                    <td>🟦 child_process</td>
+                    <td>🟩 CAS operations</td>
+                    <td>🟩 Promise.allSettled</td>
+                </tr>
+                <tr>
+                    <td>🟩 Async Iterator</td>
+                    <td>🟦 worker_threads</td>
+                    <td>⬜ epoll</td>
+                    <td>🟩 Promise.race</td>
+                </tr>
+                <tr>
+                    <td>🟩 Thenable</td>
+                    <td>🟦 Atomics</td>
+                    <td>🟩 kqueue</td>
+                    <td>🟩 Promise.any</td>
+                </tr>
+                <tr>
+                    <td>🟩 EventEmitter</td>
+                    <td>🟦 Blocking operations</td>
+                    <td>⬜ Completion ports</td>
+                    <td>⬜ Web Locks API</td>
+                </tr>
+                <tr>
+                    <td>🟩 Cancelable callback</td>
+                    <td>🟦 Non-blocking loop for Array</td>
+                    <td>⬜ Event ports</td>
+                    <td>⬜ Async Pool</td>
+                </tr>
+                <tr>
+                    <td>🟩 Cancelable Promise</td>
+                    <td>⬜ High-resolution clock</td>
+                    <td>🟦 libuv</td>
+                    <td>🟩 Thread Pool</td>
+                </tr>
+                <tr>
+                    <td>🟩 Asynchronous Queue</td>
+                    <td>🟦 Callback hell</td>
+                    <td>🟦 Race conditions</td>
+                    <td>🟩 callbackify</td>
+                </tr>
+                <tr>
+                    <td>⬜ Future</td>
+                    <td>🟦 Promise hell</td>
+                    <td>🟩 Deadlocks</td>
+                    <td>🟩 promisify</td>
+                </tr>
+                <tr>
+                    <td>🟩 Deferred</td>
+                    <td></td>
+                    <td>🟩 Live locks</td>
+                    <td>⬜ IPC</td>
+                </tr>
+                <tr>
+                    <td>🟩 Observer</td>
+                    <td></td>
+                    <td>⬜ Actor Model</td>
+                    <td>⬜ Channel API</td>
+                </tr>
+                <tr>
+                    <td>🟩 Async Collector</td>
+                    <td></td>
+                    <td></td>
+                    <td>⬜ Revealing Constructor</td>
+                </tr>
+                <tr>
+                    <td>🟩 Coroutine</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>🟩 Goroutine</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>Contact Me</h3>
+        <form class="contact-form">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+            
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+            
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" rows="4" required></textarea>
+            
+            <button type="submit">Submit</button>
+        </form>
+    </main>
+</div>
+
+<footer class="footer">
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p>
+</footer>
+</body>
+</html>
