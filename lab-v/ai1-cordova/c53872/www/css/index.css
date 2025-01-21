@@ -1,0 +1,114 @@
+@import url('https://fonts.googleapis.com/css2?family=Sour+Gummy&display=swap');
+
+body {
+    font-family: 'Sour Gummy', Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: url('../cloud.jpg') no-repeat center center fixed;
+    background-size: cover;
+    color: #333;
+}
+
+#weather-search-params {
+    margin-top: 30px;
+    text-align: center;
+}
+
+#locationInput {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 200px;
+    margin-right: 10px;
+}
+
+#checkButton {
+    padding: 10px 15px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+}
+
+#checkButton:hover {
+    background-color: #0056b3;
+}
+
+#weather-results-container {
+    margin-top: 20px;
+    width: 100%;
+    max-width: 500px;
+}
+
+.weather-block {
+    position: relative;
+    display: flex;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.9);
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 15px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.weather-block::before {
+    content: '';
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background-color: #007bff;
+    border-radius: 50%;
+    animation: moveDot 4s linear infinite;
+    filter: blur(2px);
+}
+
+@keyframes moveDot {
+    0% {
+        top: 0;
+        left: 0;
+    }
+    25% {
+        top: 0;
+        left: 100%;
+        transform: translateX(-100%);
+    }
+    50% {
+        top: 100%;
+        left: 100%;
+        transform: translate(-100%, -100%);
+    }
+    75% {
+        top: 100%;
+        left: 0;
+        transform: translateY(-100%);
+    }
+    100% {
+        top: 0;
+        left: 0;
+    }
+}
+
+.weather-date {
+    font-size: 14px;
+    font-weight: bold;
+    color: #555;
+}
+
+.weather-temperature,
+.weather-temperature-feels-like,
+.weather-description {
+    font-size: 16px;
+    margin-left: 10px;
+}
+
+.weather-icon {
+    width: 50px;
+    height: 50px;
+    margin-left: auto;
+}
